@@ -1,0 +1,38 @@
+{
+  "quizDemo": [
+    {
+      "question": "What is Vue JS",
+      "answer": 0,
+      "options": [
+        "A front end framework",
+        "A library",
+        "An ice cream maker",
+        "A computer program"
+      ],
+      "selected": null
+    },
+    {
+      "question": "What does JS stand for?",
+      "answer": 1,
+      "options": [
+        "Java",
+        "JavaScript",
+        "Java Scones",
+        "Jasso"
+      ],
+      "selected": null
+    },
+    {
+      "question": "What is this",
+      "answer": 0,
+      "options": [
+        "A quiz website",
+        "A random box",
+        "A car",
+        "question 4"
+      ],
+      "selected": null
+    }
+
+  ]
+}
