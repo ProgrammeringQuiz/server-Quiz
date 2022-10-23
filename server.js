@@ -1,58 +1,21 @@
-const { MongoClient } = require('mongodb');
+var express = require('express');
+var app = express();
+var fs = require('fs');
+var cors = require('cors')
 
-async function main() {
+app.use(cors())
 
-    const uri = "mongodb+srv://admin:4zYSLmNp7iMBGV1oyDfS@cluster0.fldldow.mongodb.net/?retryWrites=true&w=majority";
+// Endpoint to Get a list of questions
+app.get('/getQuestions', function(req, res){
+    fs.readFile(__dirname + "/json/" + "quizData.json", 'utf8', function(err, data){
+        console.log(data);
+        res.json(JSON.parse(data));
+    });
+})
 
-    const client = new MongoClient(uri);
-
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
-
-        // Make the appropriate DB calls
-        //await findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews(client, "What is Java?")
-        await findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews(client);
-
-
-
-    } finally {
-        // Close the connection to the MongoDB cluster
-        await client.close();
-    }
-
-}
-
-main().catch(console.error);
-
-// Add functions that make DB calls here
-async function findOneListingByName(client, question) {
-    const result = await client.db("quiz").collection("java-questions").find({ question: question });
-
-    if (result) {
-        console.log(`Found a listing in the collection with the name '${question}':`);
-        console.log(result);
-    } else {
-        console.log(`No listings found with the name '${question}'`);
-    }
-}
-
-async function findListingsWithMinimumBedroomsBathroomsAndMostRecentReviews(client) {
-    const cursor = client.db("quiz").collection("java-questions").find()
-
-    const results = await cursor.toArray();
-
-    if (results.length > 0) {
-        results.forEach((result, i) => {
-            console.log();
-            console.log(`${i + 1}. question: ${result.question}`);
-            console.log(`   _id: ${result._id}`);
-            console.log(`   answer: ${result.answer}`);
-            console.log(`   options: ${result.options}`);
-        });
-    } else {
-        console.log(`No listings found with at least bedrooms and bathrooms`);
-    }
-}
-
-
+// Create a server to listen at port 8080
+var server = app.listen(8080, function(){
+    var host = server.address().address
+    var port = server.address().port
+    console.log("REST API demo app listening at http://%s:%s", host, port)
+})
