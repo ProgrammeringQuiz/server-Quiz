@@ -1,9 +1,9 @@
-const QuizModel = require("../models/question")
+const QuizModel = require("../models/javaVariable")
 
 exports.getAll = async () => {
     return QuizModel.find();
 }
 
-exports.createBlog = async (quiz) => {
+exports.createQuestion = async (quiz) => {
     return QuizModel.create(quiz);
 };

@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const mongoose = require('mongoose');
-const quizRouter = require('./routes/QuizRoutes')
+const javaVariableRouter = require('./routes/javaVariableRoutes')
 
 app.use(express.json())
 app.use(cors())
-app.use("/api/quiz", quizRouter)
+app.use("/api/java-variable", javaVariableRouter)
 
 const server = app.listen(8080, function(){
     const host = server.address().address
