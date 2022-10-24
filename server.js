@@ -1,22 +1,34 @@
+const express = require('express');
+const app = express();
+const cors = require('cors')
+const mongoose = require('mongoose');
+const javaVariableRouter = require('./routes/javaRoutes')
 
-var express = require('express');
-var app = express();
-var fs = require('fs');
-var cors = require('cors')
-
+app.use(express.json())
 app.use(cors())
+app.use("/api/java", javaVariableRouter)
 
-// Endpoint to Get a list of questions
-app.get('/getQuestions', function(req, res){
-    fs.readFile(__dirname + "/json/" + "quizData.json", 'utf8', function(err, data){
-        console.log(data);
-        res.json(JSON.parse(data));
-    });
-})
-
-// Create a server to listen at port 8080
-var server = app.listen(8080, function(){
-    var host = server.address().address
-    var port = server.address().port
+const server = app.listen(8080, function(){
+    const host = server.address().address
+    const port = server.address().port
     console.log("REST API demo app listening at http://%s:%s", host, port)
 })
+
+//configure mongoose
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb+srv://admin:4zYSLmNp7iMBGV1oyDfS@cluster0.fldldow.mongodb.net/quiz?retryWrites=true&w=majority",
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    },
+    (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Connected to MongoDB");
+        }
+    }
+);
+
+
+module.exports = server;
