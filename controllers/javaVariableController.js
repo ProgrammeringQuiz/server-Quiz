@@ -1,18 +1,18 @@
-const quizService = require("../services/javaVariableService");
+const javaVariableService = require("../services/javaVariableService");
 
 
-exports.getAll = async (req, res) => {
+exports.getVariableAll = async (req, res) => {
     try {
-        const quiz = await quizService.getAll();
+        const quiz = await javaVariableService.getAll();
         res.json({ data: quiz, status: "success" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
 
-exports.createQuestion = async (req, res) => {
+exports.createVariableQuestion = async (req, res) => {
     try {
-        const quiz = await quizService.createQuestion(req.body);
+        const quiz = await javaVariableService.createQuestion(req.body);
         res.json({ data: quiz, status: "success" });
     } catch (err) {
         res.status(500).json({ error: err.message });

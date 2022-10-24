@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const mongoose = require('mongoose');
-const javaVariableRouter = require('./routes/javaVariableRoutes')
+const javaVariableRouter = require('./routes/javaRoutes')
 
 app.use(express.json())
 app.use(cors())
-app.use("/api/java-variable", javaVariableRouter)
+app.use("/api/java", javaVariableRouter)
 
 const server = app.listen(8080, function(){
     const host = server.address().address
