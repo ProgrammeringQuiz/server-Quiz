@@ -5,6 +5,6 @@ const questionSchema = new Schema({
     question: String,
     answer: Number,
     options: [String]
-});
+}, {collection: 'java-variable'});
 
-module.exports = mongoose.model("testJava", questionSchema);
+module.exports = mongoose.model("java-variable", questionSchema);

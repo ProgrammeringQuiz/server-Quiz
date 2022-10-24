@@ -16,7 +16,7 @@ const server = app.listen(8080, function(){
 
 //configure mongoose
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb+srv://admin:4zYSLmNp7iMBGV1oyDfS@cluster0.fldldow.mongodb.net/?retryWrites=true&w=majority",
+    process.env.MONGODB_URI || "mongodb+srv://admin:4zYSLmNp7iMBGV1oyDfS@cluster0.fldldow.mongodb.net/quiz?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
