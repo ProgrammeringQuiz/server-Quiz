@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const javaLoopsSchema = new Schema({
+const javaArraySchema = new Schema({
     question: String,
     img: {
         data: Buffer,
@@ -9,6 +9,6 @@ const javaLoopsSchema = new Schema({
     },
     answer: Number,
     options: [String]
-}, {collection: 'java-loops'});
+}, {collection: 'java-arrays'});
 
-module.exports = mongoose.model("java-loops", javaLoopsSchema);
+module.exports = mongoose.model("java-arrays", javaArraySchema);

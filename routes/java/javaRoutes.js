@@ -14,6 +14,12 @@ const {
     createLoopsQuestion
 } = require("../../controllers/java/javaLoopsController")
 
+const {
+    getArraysAll,
+    createArraysQuestion
+} = require("../../controllers/java/javaArraysController")
+const {get} = require("mongoose");
+
 
 
 const router = express.Router();
@@ -21,6 +27,7 @@ const router = express.Router();
 router.route("/variable").get(getVariableAll).post(createVariableQuestion)
 router.route("/class").get(getClassAll).post(createClassQuestion)
 router.route("/loops").get(getLoopsAll).post(createLoopsQuestion)
+router.route("/arrays").get(getArraysAll).post(createArraysQuestion)
 
 
 module.exports = router;
