@@ -18,7 +18,6 @@ const {
     getArraysAll,
     createArraysQuestion
 } = require("../../controllers/java/javaArraysController")
-const {get} = require("mongoose");
 
 
 
