@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const javaMethodSchema = new Schema({
+const javaClassSchema = new Schema({
     question: String,
     img: {
         data: Buffer,
@@ -9,6 +9,6 @@ const javaMethodSchema = new Schema({
     },
     answer: Number,
     options: [String]
-}, {collection: 'java-method'});
+}, {collection: 'java-class'});
 
-module.exports = mongoose.model("java-method", javaMethodSchema);
+module.exports = mongoose.model("java-class", javaClassSchema);

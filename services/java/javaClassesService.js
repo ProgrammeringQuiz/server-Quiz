@@ -1,4 +1,4 @@
-const QuizModel = require("../../models/java/javaMethods")
+const QuizModel = require("../../models/java/javaClasses")
 
 exports.getAll = async () => {
     return QuizModel.find();

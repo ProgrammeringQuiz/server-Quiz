@@ -5,9 +5,9 @@ const {
 } = require("../../controllers/java/javaVariableController");
 
 const {
-    getMethodAll,
-    createMethodQuestion
-} = require("../../controllers/java/javaMethodController")
+    getClassAll,
+    createClassQuestion
+} = require("../../controllers/java/javaClassesController")
 
 const {
     getLoopsAll,
@@ -19,7 +19,7 @@ const {
 const router = express.Router();
 
 router.route("/variable").get(getVariableAll).post(createVariableQuestion)
-router.route("/method").get(getMethodAll).post(createMethodQuestion)
+router.route("/class").get(getClassAll).post(createClassQuestion)
 router.route("/loops").get(getLoopsAll).post(createLoopsQuestion)
 
 
