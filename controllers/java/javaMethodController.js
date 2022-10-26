@@ -1,4 +1,4 @@
-const javaMethodService = require("../services/javaMethodService");
+const javaMethodService = require("../../services/java/javaMethodService");
 
 
 exports.getMethodAll = async (req, res) => {
