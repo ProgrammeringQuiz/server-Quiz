@@ -4,6 +4,6 @@ exports.getAll = async () => {
     return userModel.find();
 }
 
-exports.createQuestion = async (quiz) => {
+exports.createUser = async (quiz) => {
     return userModel.create(quiz);
 };
