@@ -27,3 +27,12 @@ exports.getUserById = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+exports.updateUser = async (req, res) => {
+    try {
+        const user = await userService.updateUser(req.params.id, req.body);
+        res.json({ data: user, status: "success" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};

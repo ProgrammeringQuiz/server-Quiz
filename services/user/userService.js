@@ -11,3 +11,7 @@ exports.createUser = async (quiz) => {
 exports.getUserById = async (id) => {
     return userModel.findById(id);
 };
+
+exports.updateUser = async (id, blog) => {
+    return userModel.findByIdAndUpdate(id, blog);
+};
