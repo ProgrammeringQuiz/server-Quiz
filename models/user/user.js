@@ -14,7 +14,10 @@ const userSchema = new Schema({
         data: Buffer,
         contentType: String
     },
-    quizHistory: [String]
+    quizHistory: [{
+        quizName: String,
+        score: Number
+    }]
 }, {collection: 'user'});
 
 
