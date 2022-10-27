@@ -10,10 +10,10 @@ const userRouter = require('./routes/user/userRoutes')
 
 app.use(express.json())
 app.use(cors())
+app.use("/models/uploads",express.static("models/uploads"))
 app.use("/api/java", javaRouter)
 app.use("/api/js", jsRouter)
 app.use("/api/user", userRouter)
-
 
 const server = app.listen(8080, function(){
     const host = server.address().address

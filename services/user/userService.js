@@ -1,11 +1,13 @@
 const userModel = require("../../models/user/user")
 
+
+
 exports.getAll = async () => {
     return userModel.find();
 }
 
-exports.createUser = async (quiz) => {
-    return userModel.create(quiz);
+exports.createUser = async (user) => {
+    return userModel.create(user);
 };
 
 exports.getUserById = async (id) => {

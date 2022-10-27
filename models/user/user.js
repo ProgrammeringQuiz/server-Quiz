@@ -10,9 +10,8 @@ const userSchema = new Schema({
     username: {type: String, required: true, index: { unique: true}},
     password: {type: String, required: true},
     email: String,
-    img: {
-        data: Buffer,
-        contentType: String
+    profileImage: {
+        type: String,
     },
     quizHistory: [{
         quizName: String,
