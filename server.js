@@ -6,11 +6,13 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 const javaRouter = require('./routes/java/javaRoutes')
 const jsRouter = require('./routes/js/jsRoutes')
+const userRouter = require('./routes/user/userRoutes')
 
 app.use(express.json())
 app.use(cors())
 app.use("/api/java", javaRouter)
 app.use("/api/js", jsRouter)
+app.use("/api/", userRouter)
 
 
 const server = app.listen(8080, function(){
