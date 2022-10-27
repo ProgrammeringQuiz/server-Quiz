@@ -7,3 +7,7 @@ exports.getAll = async () => {
 exports.createUser = async (quiz) => {
     return userModel.create(quiz);
 };
+
+exports.getUserById = async (id) => {
+    return userModel.findById(id);
+};

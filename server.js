@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(cors())
 app.use("/api/java", javaRouter)
 app.use("/api/js", jsRouter)
-app.use("/api/", userRouter)
+app.use("/api/user", userRouter)
 
 
 const server = app.listen(8080, function(){
