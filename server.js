@@ -1,12 +1,17 @@
+require('dotenv').config({path: 'config.env'})
+
 const express = require('express');
 const app = express();
 const cors = require('cors')
 const mongoose = require('mongoose');
-const javaVariableRouter = require('./routes/javaRoutes')
+const javaRouter = require('./routes/java/javaRoutes')
+const jsRouter = require('./routes/js/jsRoutes')
 
 app.use(express.json())
 app.use(cors())
-app.use("/api/java", javaVariableRouter)
+app.use("/api/java", javaRouter)
+app.use("/api/js", jsRouter)
+
 
 const server = app.listen(8080, function(){
     const host = server.address().address
@@ -16,7 +21,7 @@ const server = app.listen(8080, function(){
 
 //configure mongoose
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb+srv://admin:4zYSLmNp7iMBGV1oyDfS@cluster0.fldldow.mongodb.net/quiz?retryWrites=true&w=majority",
+    process.env.MONGODB_URI,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

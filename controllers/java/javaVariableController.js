@@ -1,4 +1,4 @@
-const javaVariableService = require("../services/javaVariableService");
+const javaVariableService = require("../../services/java/javaVariableService");
 
 
 exports.getVariableAll = async (req, res) => {
