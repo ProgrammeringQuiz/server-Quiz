@@ -14,6 +14,6 @@ exports.getUserById = async (id) => {
     return userModel.findById(id);
 };
 
-exports.updateUser = async (id, blog) => {
-    return userModel.findByIdAndUpdate(id, blog);
+exports.updateUser = async (id, user) => {
+    return userModel.findByIdAndUpdate(id, user);
 };
