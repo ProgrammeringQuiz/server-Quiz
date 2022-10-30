@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const jsLoopsSchema = new Schema({
+    title: String,
     question: String,
     img: {
         data: Buffer,
