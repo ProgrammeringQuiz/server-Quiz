@@ -23,7 +23,6 @@ exports.createUser = async (req, res)  => {
             profileImage: req.file.path,
             quizHistory: req.body.quizHistory
         })
-
         const user = await userService.createUser(userTest);
         res.json({ data: user, status: "success" });
     } catch (err) {
@@ -32,7 +31,6 @@ exports.createUser = async (req, res)  => {
 };
 
 exports.getUserById = async (req, res) => {
-    console.log(req.file)
     try {
         const user = await userService.getUserById(req.params.id);
         res.json({ data: user, status: "success" });
@@ -43,9 +41,9 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        const user = await userService.updateUser(req.params.id, req.body);
-        res.json({ data: user, status: "success" });
+        const user = await userService.updateUser(req.params.id, {$push:{"quizHistory": req.body.quizHistory}});
+        res.json({data: user, status: "success"});
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({error: err.message});
     }
 };
