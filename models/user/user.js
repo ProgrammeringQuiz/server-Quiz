@@ -15,7 +15,8 @@ const userSchema = new Schema({
     },
     quizHistory: [{
         quizName: String,
-        score: Number
+        score: Number,
+        scoreOf: Number,
     }]
 }, {collection: 'user'});
 

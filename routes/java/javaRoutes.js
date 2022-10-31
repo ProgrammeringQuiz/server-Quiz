@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require('multer');
 const {
     getVariableAll,
     createVariableQuestion
@@ -19,11 +20,20 @@ const {
     createArraysQuestion
 } = require("../../controllers/java/javaArraysController")
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'models/uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString() + file.originalname)
+    }
+});
 
+const upload = multer({ storage: storage });
 
 const router = express.Router();
 
-router.route("/variable").get(getVariableAll).post(createVariableQuestion)
+router.route("/variable").get(getVariableAll).post( upload.single('questionImg'),createVariableQuestion)
 router.route("/class").get(getClassAll).post(createClassQuestion)
 router.route("/loops").get(getLoopsAll).post(createLoopsQuestion)
 router.route("/arrays").get(getArraysAll).post(createArraysQuestion)

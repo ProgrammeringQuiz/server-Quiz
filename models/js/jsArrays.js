@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const jsArraysSchema = new Schema({
+    title: String,
     question: String,
     img: {
         data: Buffer,
