@@ -1,10 +1,15 @@
 const express = require("express");
 const multer = require('multer');
+const verify = require("../authVerify")
+const User = require("../../models/user/user")
+
+
 const {
     getUserAll,
     createUser,
     getUserById,
-    updateUser
+    updateUser,
+    signIn
 } = require("../../controllers/user/userController");
 
 
@@ -22,7 +27,17 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
-router.route("/").get(getUserAll).post( upload.single('profileImage'), createUser)
-router.route("/:id").get(getUserById).put(updateUser)
+router.route("/", ).get(getUserAll).post( upload.single('profileImage'), createUser)
+router.route("/:id").get(verify,getUserById).put(updateUser)
+router.route("/signIn").post(signIn)
+
+router.get("/all", verify, async (req, res) => {
+    try{
+        const result = await User.find().exec();
+        res.send(result);
+    }catch (error){
+        res.status(500).send(error);
+    }
+});
 
 module.exports = router;
