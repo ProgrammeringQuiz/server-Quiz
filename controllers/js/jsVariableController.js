@@ -1,4 +1,5 @@
 const jsVariableService = require("../../services/js/jsVariableService");
+const mongoose = require("mongoose");
 
 
 exports.getVariableAll = async (req, res) => {
@@ -12,7 +13,17 @@ exports.getVariableAll = async (req, res) => {
 
 exports.createVariableQuestion = async (req, res) => {
     try {
-        const quiz = await jsVariableService.createQuestion(req.body);
+        const question = ({
+            _id: new mongoose.Types.ObjectId(),
+            title: req.body.title,
+            question: req.body.question,
+            answer: req.body.answer,
+            options: req.body.options,
+            questionImg: req.file.path,
+        })
+
+
+        const quiz = await jsVariableService.createQuestion(question);
         res.json({ data: quiz, status: "success" });
     } catch (err) {
         res.status(500).json({ error: err.message });
