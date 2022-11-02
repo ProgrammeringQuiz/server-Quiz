@@ -1,6 +1,7 @@
 const userService = require("../../services/user/userService");
 const mongoose = require("mongoose");
-
+const User = require("../../models/user/user")
+const jwt = require("jsonwebtoken");
 
 exports.getUserAll = async (req, res) => {
     try {
@@ -47,3 +48,21 @@ exports.updateUser = async (req, res) => {
         res.status(500).json({error: err.message});
     }
 };
+
+exports.signIn = async (req, res) => {
+    const user = await User.findOne({ username: req.body.username })
+    if(!user) return res.status(400).send("Incorrect")
+    user.comparePassword(req.body.password, function(err, isMatch) {
+        if (err) throw err;
+
+        if(!isMatch){
+            return res.status(400).send("Invalid password")
+        }
+    });
+    try{
+        const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+        res.header("auth-token", token).send(token);
+    }catch(err){
+        res.status(500).json({error: err.message});
+    }
+}

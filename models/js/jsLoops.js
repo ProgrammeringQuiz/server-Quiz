@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 const jsLoopsSchema = new Schema({
     title: String,
     question: String,
-    img: {
-        data: Buffer,
-        contentType: String
+    questionImg: {
+        type: String
     },
     answer: Number,
     options: [String]
