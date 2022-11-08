@@ -58,11 +58,13 @@ exports.signIn = async (req, res) => {
         if(!isMatch){
             return res.status(400).send("Invalid password")
         }
+        try{
+            const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+
+            res.header("auth-token", token).send(token);
+        }catch(err){
+            res.status(500).json({error: err.message});
+        }
     });
-    try{
-        const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-        res.header("auth-token", token).send(token);
-    }catch(err){
-        res.status(500).json({error: err.message});
-    }
+
 }
