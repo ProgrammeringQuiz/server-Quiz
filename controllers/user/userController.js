@@ -21,13 +21,13 @@ exports.createUser = async (req, res)  => {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
-            profileImage: req.file.path,
+            profileImage: req.file?.path,
             quizHistory: req.body.quizHistory
         })
         const user = await userService.createUser(userTest);
         res.json({ data: user, status: "success" });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).send({errMsg: "Incorrect input"});
     }
 };
 
@@ -51,18 +51,19 @@ exports.updateUser = async (req, res) => {
 
 exports.signIn = async (req, res) => {
     const user = await User.findOne({ username: req.body.username })
-    if(!user) return res.status(400).send("Incorrect")
+    if(!user) return res.status(400).send({msg: "Incorrect username"})
     user.comparePassword(req.body.password, function(err, isMatch) {
         if (err) throw err;
 
         if(!isMatch){
-            return res.status(400).send("Invalid password")
+            return res.status(400).send({msg: "Invalid password"})
+        }
+        try{
+            const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+            res.header("auth-token", token).send({userToken: token, userId: user._id});
+        }catch(err){
+            res.status(500).json({error: err.message});
         }
     });
-    try{
-        const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-        res.header("auth-token", token).send(token);
-    }catch(err){
-        res.status(500).json({error: err.message});
-    }
+
 }
