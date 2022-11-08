@@ -21,13 +21,13 @@ exports.createUser = async (req, res)  => {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
-            profileImage: req.file.path,
+            profileImage: req.file?.path,
             quizHistory: req.body.quizHistory
         })
         const user = await userService.createUser(userTest);
         res.json({ data: user, status: "success" });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).send({errMsg: "Incorrect input"});
     }
 };
 
