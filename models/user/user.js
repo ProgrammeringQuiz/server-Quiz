@@ -5,11 +5,11 @@ const SALT_WORK_FACTOR = 10;
 
 
 const userSchema = new Schema({
-    fName: String,
-    lName: String,
+    fName: {type: String, required: true},
+    lName: {type: String, required: true},
     username: {type: String, required: true, index: { unique: true}},
     password: {type: String, required: true},
-    email: String,
+    email: {type: String, required: true},
     profileImage: {
         type: String,
     },
